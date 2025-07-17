@@ -1,0 +1,32 @@
+# Node modules
+/node_modules
+
+# Logs
+*.log
+*.log.*
+
+# Environment variables
+.env
+
+# Vite
+/client/node_modules
+/client/build
+.vite/
+
+# React build files
+/client/build/
+
+# Other editor settings
+.vscode/
+.idea/
+.DS_Store
+
+# Database files
+*.sqlite
+
+# Server specific
+/server/node_modules
+/server/dist/
+
+#docker
+docker/mysql/data/
