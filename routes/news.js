@@ -8,6 +8,8 @@ const {
   getArticleById,
   getRandomArticlesInOneWeek,
   queryAriticles,
+  deleteArticle,
+  getAllArticlesForMod,
 } = require("../controllers/news-controller");
 const { authenticateToken } = require("../middleware/authenticateToken");
 const { authorizeRoles } = require("../middleware/authorizeRoles");
@@ -24,8 +26,11 @@ router.post(
   createArticle
 );
 router.get("/articles/all-news", getNewsItem);
+router.get("/articles/article-mod-dashboard", getAllArticlesForMod);
 router.get("/articles/random-articles", getRandomArticlesInOneWeek);
 router.get("/articles/search", queryAriticles);
 router.get("/articles/:id", getArticleById);
+
+router.delete("/articles/:id", authenticateToken, authorizeRoles("mod"), deleteArticle);
 
 module.exports = router;

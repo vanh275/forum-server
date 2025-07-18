@@ -195,11 +195,46 @@ const queryAriticles = async (req, res, next) => {
   }
 }
 
+const getAllArticlesForMod = async (req, res, next) => {
+  try {
+    const articles = await Article.findAll(
+      {
+        include: [
+          {
+            model: Account,
+            attributes: ["id", "username"],
+          },
+        ],
+      }
+    );
+
+    return res.status(200).json({
+      EM: "Lấy bài viết cho Mod Dashboard",
+      EC: 0,
+      DT: articles
+    })
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteArticle = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await Article.destroy({ where: { id } });
+    return res.status(200).json({ EM: "Xóa bài viết thành công", EC: 0 });
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   articleImageHandle,
   createArticle,
   getNewsItem,
   getArticleById,
   getRandomArticlesInOneWeek,
-  queryAriticles
+  queryAriticles,
+  deleteArticle,
+  getAllArticlesForMod
 };
