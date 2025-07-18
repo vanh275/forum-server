@@ -20,7 +20,8 @@ const newsRoutes = require("./routes/news");
 const productRoutes = require("./routes/product");
 const stripeRoutes = require("./routes/stripe");
 const orderRoutes = require("./routes/order");
-
+const bcrypt = require("bcrypt");
+bcrypt.hash("admin", 10).then(console.log);
 // khởi tạo socket
 initializeSocket(httpServer);
 
